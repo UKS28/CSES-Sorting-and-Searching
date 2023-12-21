@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n;
+	cin>>n;
+    vector<long long> v(n+1);
+	 
+	rep(0,n)
+	{
+		long long k;
+		cin>>k;
+		v[k]=i+1;
+	}
+    
+    int ans=1;
+	rep(2,n+1)
+	{
+       if(v[i]<v[i-1])ans++;
+	}   
+    
+	cout<<ans<<endl;
+
+	return 0;
+}
