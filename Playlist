@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n;
+	cin>>n;
+    vector<long long> v(n);
+	
+	rep(0,n)
+	   cin>>v[i];
+
+	int ans=1;
+
+	int i=0,j=0;
+	map<long long ,int> mpp;
+	while(j<n)
+	{
+      mpp[v[j]]++;
+	 
+	  if(mpp[v[j]]==1)
+	  {
+		ans=max(j-i+1,ans);
+	  }
+	  else
+	  {
+		while(mpp[v[j]]!=1)
+		{
+			mpp[v[i]]--;
+			if(mpp[v[i]]==0)mpp.erase(v[i]);
+			i++;
+		}
+	  }
+	  
+    j++;
+	}
+	
+	cout<<ans<<endl;
+
+	return 0;
+}
