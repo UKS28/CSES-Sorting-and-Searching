@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n,m;
+	cin>>n>>m;
+
+
+	// multiset<int> mst;
+	// mst.insert(n);
+
+	set<int> st;
+    st.insert(0);
+	st.insert(n);
+
+	map<int,int,greater<int>> mpp;
+	mpp[n]++;
+
+	while(m--)
+	{
+		int k;
+		cin>>k;
+		
+		auto itr=st.upper_bound(k);
+		int upper=*itr;
+		int lower=*(--itr);
+		int diff=upper-lower;
+
+        // auto itr2=mst.find(diff);
+		// mst.erase(itr2);
+		// mst.insert(upper-k);
+		// mst.insert(k-lower);
+
+		mpp[diff]--;
+		if(mpp[diff] ==0)
+		  mpp.erase(diff);
+		mpp[upper-k]++;
+		mpp[k-lower]++;  
+
+		auto it=mpp.begin();
+		cout<<it->first<<" ";
+		
+		st.insert(k);	
+	}
+	return 0;
+}
