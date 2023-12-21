@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n;
+	cin>>n;
+    vector<long long> v(n);
+
+	rep(0,n)
+	   cin>>v[i];
+
+	sort(v.begin(),v.end());
+
+	long long last=1;
+	rep(0,n)
+	{
+		if(last<v[i])
+		   break;
+		last=last+v[i];
+	}
+    cout<<last<<endl;
+
+	return 0;
+}
