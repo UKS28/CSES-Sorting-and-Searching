@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+  int n;
+	cin>>n;
+  // set as we want some ordered way and we want to erase
+	set<int> st;
+	rep(1,n+1)
+	st.insert(i);
+  int cnt=0;
+	auto itr=st.begin();
+	while(st.size()!=1)
+	{
+     auto itr2=itr;
+	   itr2++;
+	   if(itr2!=st.end())
+	    {
+			cout<<*itr2<<" ";
+			st.erase(itr2);
+			itr++;
+			if(itr==st.end())
+			  itr=st.begin();
+		  }
+	   else
+	   {
+    		itr2=st.begin();
+    		cout<<*itr2<<" ";
+    		st.erase(itr2);
+        itr=st.begin(); 
+	   }    
+	}  
+
+	cout<<*st.begin()<<endl;
+	st.clear();
+	return 0;
+}
