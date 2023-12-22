@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n,k;
+	cin>>n>>k;
+	
+	vector<pair<int,int>> v(n);
+	rep(0,n)
+	 { 
+	  cin>>v[i].first;
+	  v[i].second=i+1;
+	 }
+
+	sort(v.begin(),v.end());
+
+	rep(0,n)
+	{
+		int target=k-v[i].first;
+		int l=i+1,h=n-1;
+		while(l<h)
+		{
+			if(v[l].first+v[h].first==target)
+			   {cout<<v[i].second<<" "<<v[l].second<<" "<<v[h].second<<endl;return 0;}
+			else if(v[l].first+v[h].first>target)
+			   h--;
+			else
+			   l++;      
+		}
+	}
+   
+    cout<<"IMPOSSIBLE\n";
+	return 0;
+}
