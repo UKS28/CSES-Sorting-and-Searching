@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+ 
+ 
+int main(){
+    int n,k;
+	cin>>n>>k;
+	
+	vector<int> v(n);
+ 
+	rep(0,n)
+	   cin>>v[i];
+ 
+	int i=0,j=0;
+	int cnt=0;
+	long long sum=0;
+ 
+	while(j<n)
+	{
+		sum+=v[j];
+		j++;
+ 
+        while(sum>=k)
+		{
+			if(sum==k)
+			cnt++;
+			sum-=v[i];
+			i++;
+		}
+        // cout<<j<<" "<<sum<<endl;
+		   
+	}
+	cout<<cnt<<endl;
+ 
+	return 0;
