@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+ 
+ int partition_cnt(vector<long long> &v,long long mid,int k)
+ {
+   int n=v.size();
+   long long sum=0;
+   int cnt=1;
+   for(int i=0;i<n;i++)
+   {
+	   sum+=v[i];
+	  if(sum>mid)
+	  {
+		sum=v[i];
+		cnt++;
+	  }
+ 
+   }
+ 
+    return cnt;
+ }
+ 
+int main(){
+    int n,k;
+	vector<long long int> v;
+ 
+	cin>>n>>k;
+	v.resize(n);
+	
+	long long sum=0;
+	long long int mx=0;
+	rep(0,n)
+	   {
+		cin>>v[i];
+		sum+=v[i];
+		mx=max(mx,v[i]);
+	   }
+	long long l=mx,h=sum;
+	long long ans=sum;
+	while(l<=h)
+	{
+       long long mid=l+(h-l)/2;
+	   int cnt=partition_cnt(v,mid,k);
+ 
+	   if(cnt<=k)
+	   {
+			ans=mid;
+            h=mid-1;
+	   } 
+	   else
+			l=mid+1;
+ 
+		// cout<<l<<" "<<h<<" "<<ans<<" "<<cnt<<endl;	
+ 
+	}   
+ 
+    cout<<ans<<endl;
+	return 0;
+}
