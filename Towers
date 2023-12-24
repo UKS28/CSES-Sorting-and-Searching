@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+
+
+int main(){
+    int n;
+	vector<int> v;
+
+	cin>>n;
+	v.resize(n);
+	
+	
+	rep(0,n)
+	   {
+		cin>>v[i];
+	   }
+	
+
+	map<int,int> mpp;
+	mpp[v[0]]++;
+
+	rep(1,n)
+	{
+       auto itr=mpp.upper_bound(v[i]);
+	   if(itr!=mpp.end())
+	   {
+		 mpp[itr->first]--;
+		 if(mpp[itr->first]==0)
+		 mpp.erase(itr);
+		
+	   }
+
+	    mpp[v[i]]++;
+	}
+     long long ans=0;
+	 for(auto &itr:mpp)
+	 {
+      ans+=itr.second;
+	 }
+	 
+	 cout<<ans<<endl;
+
+
+	return 0;
+}
