@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+ 
+ 
+int main(){
+    int n,k;
+	vector<int> v;
+ 
+	cin>>n>>k;
+	v.resize(n);
+	
+	rep(0,n)
+		cin>>v[i];
+ 
+	multiset<int> m1,m2;
+	int i=0,j=0;
+	while(j<(k+1)/2)
+	m1.insert(v[j++]);
+ 
+	while(j<n)
+	{
+		auto itr=m1.end();
+		if(itr!=m1.begin())itr--;
+       if(m1.size()+m2.size()<k)
+		{
+			// cout<<"inserting\n";
+			if(itr==m1.end())
+				m1.insert(v[j]);
+ 
+			else if( *itr>v[j])
+			{
+				m2.insert(*itr);
+				m1.erase(itr);
+				m1.insert(v[j]);
+				// cout<<v[j]<<"inserted in m1\n";
+			}
+			else
+			{
+				m2.insert(v[j]);
+				// cout<<v[j]<<"inserted in m2\n";
+			}
+		  j++;
+		}
+	   if(j-i==k)
+	   {
+		// cout<<"inside "<<i<<"  ";
+		   auto itr=m1.end();
+		   itr--;
+		   cout<<*itr<<" ";
+ 
+           itr=m1.find(v[i]);
+		   if(itr!=m1.end())
+		   {
+			  m1.erase(itr);
+			  if(m2.size()>0) 
+			  {
+				m1.insert(*m2.begin());
+			    m2.erase(m2.begin());
+			  }
+		   }
+		   else 
+		   {
+			itr=m2.find(v[i]);
+			m2.erase(itr);
+		   }
+ 
+		   i++;
+	   }
+	   
+ 
+	}
+ 
+	return 0;
+}
