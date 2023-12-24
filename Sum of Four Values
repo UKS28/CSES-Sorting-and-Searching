@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+ 
+ 
+int main(){
+    int n,k;
+	vector<int> v;
+ 
+	cin>>n>>k;
+	v.resize(n);
+	
+	rep(0,n)
+	   {
+		cin>>v[i];
+		
+	   }
+	
+    
+	map<long long int,pair<int,int>> mpp;
+ 
+	for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		mpp[v[i]+v[j]]={i,j};
+	}
+ 
+ 
+    for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		{
+			int target=k-v[i]-v[j];
+ 
+			if(mpp.find(target)!=mpp.end())
+			{
+				int i1=mpp[target].first;
+				int j1=mpp[target].second;
+ 
+				if(i1!=i && j1!=j && i1!=j && j1!=i)
+				{
+					cout<<i+1<<" "<<j+1<<" "<<i1+1<<" "<<j1+1<<endl;
+					return 0;
+				}
+			}
+		}
+	}
+ 
+    cout<<"IMPOSSIBLE\n";
+	
+	return 0;
+}
