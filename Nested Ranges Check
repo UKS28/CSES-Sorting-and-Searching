@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(k,z) for(int i=k;i<z;i++)
+#define ll  long long int
+const ll MOD=1e9+7;
+
+bool cmp(pair<pair<int,int>,int>& a, pair<pair<int,int>,int>&b)
+{
+    if(a.first.second==b.first.second)
+      return a.first.first>b.first.first;
+
+    return a.first.second<b.first.second; 
+}
+
+int main()
+{
+   int n;
+   cin>>n;
+   vector<pair<pair<int,int>,int>>vp(n);
+   for(int i=0;i<n;i++)
+   {
+      int a,b;
+      cin>>a>>b;
+      
+      vp[i]={{a,b},i};
+   }
+
+   sort(vp.begin(),vp.end(),cmp);
+   vector<bool> first(n),second(n);
+   
+
+//    first part : if it contains some other range (1) or not (0).
+//    if there exist a start point greater than thsi on left side sorted array then it contains
+    int mx=vp[0].first.first;
+    for(int i=1;i<n;i++)
+    {
+       if(mx>=vp[i].first.first)
+       {
+        first[vp[i].second]=1;
+       }
+       else
+       mx=vp[i].first.first;
+    }
+    
+    if(vp[0].first.first==vp[1].first.first && vp[0].first.second==vp[1].first.second)
+       first[0]=1;
+
+//   second part : if some other range contains it (1) or not (0).
+//   if there exist a start point less than this on right side of sorted array then it is contained
+   
+   ll mn=vp[n-1].first.first;
+   for(int i=n-2;i>=0;i--)
+   {
+    if(mn<=vp[i].first.first)
+    {
+        second[vp[i].second]=1;  
+    }
+    else
+     {
+         mn=vp[i].first.first; 
+     }   
+   }
+
+   if(vp[n-1].first.first==vp[n-2].first.first && vp[n-1].first.second==vp[n-2].first.second)
+    second[vp[n-1].second]=1;
+
+
+    for(auto itr:first)
+    cout<<itr<<" ";
+
+    cout<<endl;
+
+    for(auto itr:second)
+    cout<<itr<<" ";
+}
